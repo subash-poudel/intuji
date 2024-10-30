@@ -7,7 +7,8 @@
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/app.ts",
     "build": "tsc",
     "prod:start": "pm2 start dist/app.js",
-    "docker:build": "docker compose up --build"
+    "docker:build": "docker compose up --build",
+    "sample:knex:migration": "npx knex migrate:make create_events_table -x ts"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
   "description": "",
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/knex": "^0.16.1",
     "@types/node": "^22.8.4",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
@@ -24,6 +26,8 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "knex": "^3.1.0",
+    "pg": "^8.13.1",
     "pm2": "^5.4.2"
   }
 }
