@@ -1,13 +1,6 @@
 import HttpStatus from "http-status-codes";
 
-/**
- * Build error response for validation errors.
- *
- * @param   {Error} err
- * @returns {Object}
- */
 function buildError(err: any) {
-  // Validation errors
   if (err.isJoi) {
     return {
       code: HttpStatus.BAD_REQUEST,
@@ -23,7 +16,6 @@ function buildError(err: any) {
     };
   }
 
-  // HTTP errors
   if (err.isBoom) {
     return {
       code: err.output.statusCode,
@@ -31,7 +23,6 @@ function buildError(err: any) {
     };
   }
 
-  // Return INTERNAL_SERVER_ERROR for all other cases
   return {
     code: HttpStatus.INTERNAL_SERVER_ERROR,
     message: HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR),

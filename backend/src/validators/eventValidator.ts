@@ -5,8 +5,8 @@ import validate from "../helpers/validator";
 const eventSchema = Joi.object({
   title: Joi.string().min(5).max(150).required(),
   description: Joi.string().max(500).optional().allow(""),
-  start_time: Joi.date().required(),
-  end_time: Joi.date().required().greater(Joi.ref("start_time")),
+  start_time: Joi.string().isoDate().required(),
+  end_time: Joi.string().isoDate().required(),
   time_zone: Joi.string().required(),
   location: Joi.string().optional().allow(""),
 });

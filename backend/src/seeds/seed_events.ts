@@ -9,12 +9,12 @@ export async function seed(knex: Knex): Promise<void> {
     {
       title: "Community Picnic",
       description: "A fun-filled picnic for the community.",
-      start_time: new Date("2024-11-05T12:00:00Z"),
-      end_time: new Date("2024-11-05T16:00:00Z"),
+      start_time: new Date("2024-11-05T12:00:00Z").toISOString(),
+      end_time: new Date("2024-11-05T16:00:00Z").toISOString(),
       time_zone: "America/New_York",
       location: "Central Park, NY",
-      created_at: new Date(),
-      updated_at: new Date(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     },
     {
       title: "Tech Conference 2024",
@@ -23,8 +23,8 @@ export async function seed(knex: Knex): Promise<void> {
       end_time: new Date("2024-12-10T17:00:00Z"),
       time_zone: "America/Los_Angeles",
       location: "Convention Center, CA",
-      created_at: new Date(),
-      updated_at: new Date(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     },
   ]);
 }
