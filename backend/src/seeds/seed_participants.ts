@@ -7,19 +7,19 @@ export async function seed(knex: Knex): Promise<void> {
   // Inserts seed entries
   await knex("participants").insert([
     {
-      event_id: 1, // Assuming the first event is "Community Picnic"
+      event_id: 1,
       name: "John Doe",
       email: "johndoe@example.com",
       rsvp_status: "accepted",
     },
     {
-      event_id: 1, // Same event
+      event_id: 1,
       name: "Jane Smith",
       email: "janesmith@example.com",
       rsvp_status: "pending",
     },
     {
-      event_id: 2, // Assuming the second event is "Tech Conference 2024"
+      event_id: 2,
       name: "Alice Johnson",
       email: "alicejohnson@example.com",
       rsvp_status: "declined",

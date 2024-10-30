@@ -2,6 +2,7 @@ import express from "express";
 import { appConfig } from "./helpers/config";
 import cors from "cors";
 import bodyParser from "body-parser";
+import * as errorHandler from "./middlewares/errorHandler";
 
 import eventsRouter from "./routes/eventRoutes";
 
@@ -19,6 +20,9 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/events", eventsRouter);
+app.use(errorHandler.bodyParser);
+app.use(errorHandler.genericErrorHandler);
+app.use(errorHandler.methodNotAllowed);
 
 app.listen(port, () => {
   console.log(`Server listening   
