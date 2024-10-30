@@ -8,7 +8,9 @@
     "build": "tsc",
     "prod:start": "pm2 start dist/app.js",
     "docker:build": "docker compose up --build",
-    "sample:knex:migration": "npx knex migrate:make create_events_table -x ts"
+    "sample:knex:migration": "npx knex migrate:make create_events_table -x ts",
+    "sample:create:seed": "",
+    "db:seed": "npx knex seed:run"
   },
   "keywords": [],
   "author": "",
