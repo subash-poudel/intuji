@@ -17,6 +17,8 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/knex": "^0.16.1",
     "@types/node": "^22.8.4",
@@ -26,8 +28,12 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "http-status-codes": "^2.3.0",
     "knex": "^3.1.0",
     "pg": "^8.13.1",
     "pm2": "^5.4.2"
