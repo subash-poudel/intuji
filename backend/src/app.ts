@@ -1,7 +1,8 @@
 import express from "express";
+import { appConfig } from "./helpers/config";
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = appConfig.port;
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
