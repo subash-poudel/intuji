@@ -5,7 +5,6 @@ describe("Validation Schema", () => {
   it('should pass when freq is "daily" and no other fields are present', () => {
     const data: RecurrenceRule = { freq: "DAILY" };
     const result = recurrenceSchema.validate(data);
-    console.log("test", result);
     expect(result.error).toBeUndefined();
   });
 
