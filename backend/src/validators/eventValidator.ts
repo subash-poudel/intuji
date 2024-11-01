@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { Request, Response, NextFunction } from "express";
 import validate from "../helpers/validator";
-import { RecurrenceType } from "../models/eventModels";
+import { Day, RecurrenceType } from "../models/eventModels";
 
 export const recurrenceSchema = Joi.object({
   freq: Joi.string()
@@ -17,13 +17,13 @@ export const recurrenceSchema = Joi.object({
   byweekday: Joi.array()
     .items(
       Joi.string().valid(
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
+        Day.Monday,
+        Day.Tuesday,
+        Day.Wednesday,
+        Day.Thursday,
+        Day.Friday,
+        Day.Saturday,
+        Day.Sunday
       )
     )
     .when("freq", {

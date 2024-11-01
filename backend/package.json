@@ -11,7 +11,8 @@
     "sample:create:seed": "",
     "db:seed": "npx knex seed:run",
     "db:full:setup": "knex migrate:latest & knex seed:run",
-    "test": "jest"
+    "test": "jest",
+    "test:single": "jest src/__tests__/recurrence.test.ts"
   },
   "keywords": [],
   "author": "",
