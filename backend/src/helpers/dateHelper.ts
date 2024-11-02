@@ -95,13 +95,6 @@ export function checkIfthereIsOverlapForDates(
   date2Start: Date,
   date2End: Date
 ) {
-  //   if (isAfter(date1Start, date2Start) && isBefore(date1End, date2End)) {
-  //     return true;
-  //   }
-  //   if (isAfter(date1End, date2Start) && isBefore(date1End, date2End)) {
-  //     return true;
-  //   }
-  //   return false;
   if (doDatesOverlap(date1Start, date1End, date2Start, date2End)) {
     return true;
   }
@@ -126,18 +119,6 @@ export function checkIfThereIsOverlapForRecurrenceWithSingleDate(
   const allRecurenceDates = rrule.all();
   for (const recurrenceStart of allRecurenceDates) {
     const recurrenceEnd = addMinutes(recurrenceStart, durationInMinutes);
-    // if (
-    //   isAfter(dateToTestStart, recurrenceStart) &&
-    //   isBefore(dateToTestStart, recurrenceEnd)
-    // ) {
-    //   return true;
-    // }
-    // if (
-    //   isAfter(dateToTestEnd, recurrenceStart) &&
-    //   isBefore(dateToTestEnd, recurrenceEnd)
-    // ) {
-    //   return true;
-    // }
     if (
       doDatesOverlap(
         dateToTestStart,
@@ -175,33 +156,19 @@ export function checkIfThereIsOverlapForRecurrenceRules(
   // new Date() is okay here if we ensure that a rule is always created with endDate in mind
   const allRecurrenceForRule1 = rrule1.between(
     rrule2.options.dtstart,
-    rrule2.options.until ?? new Date()
+    rrule2.options.until ?? new Date(),
+    true
   );
   const allRecurenceDatesForRule2 = rrule2.between(
     rrule1.options.dtstart,
-    rrule1.options.until ?? new Date()
+    rrule1.options.until ?? new Date(),
+    true
   );
-  console.log("allRecurrenceForRule1", allRecurrenceForRule1, {
-    start: rrule2.options.dtstart,
-    end: rrule2.options.until,
-  });
-  console.log("allRecurenceDatesForRule2", allRecurenceDatesForRule2, {
-    start: rrule1.options.dtstart,
-    end: rrule1.options.until,
-  });
+  // console.log({ allRecurrenceForRule1, allRecurenceDatesForRule2 });
   for (const date1Start of allRecurrenceForRule1) {
-    // console.log("first loop", date1Start);
     const date1End = addMinutes(date1Start, model1.duration);
     for (const date2Start of allRecurenceDatesForRule2) {
-      //   console.log("second loop", date2Start);
       const date2End = addMinutes(date2Start, model2.duration);
-      // check for overlaps;
-      //   if (isAfter(date1Start, date2Start) && isBefore(date1Start, date2End)) {
-      //     return true;
-      //   }
-      //   if (isAfter(date1End, date2Start) && isBefore(date1End, date2End)) {
-      //     return true;
-      //   }
       if (doDatesOverlap(date1Start, date1End, date2Start, date2End)) {
         return true;
       }

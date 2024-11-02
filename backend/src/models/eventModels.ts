@@ -4,6 +4,12 @@ export interface RecurrenceRule {
   byweekday?: string[];
 }
 
+export interface Participants {
+  name: string;
+  email: string;
+  rsvp_status: RsvpStatus;
+}
+
 export interface EventRequestModel {
   title: string;
   description: string;
@@ -13,7 +19,8 @@ export interface EventRequestModel {
   duration: number;
   time_zone: string;
   location: string;
-  recurrence?: RecurrenceRule;
+  recurrence: RecurrenceRule;
+  participants: Participants[];
 }
 
 export enum RecurrenceType {

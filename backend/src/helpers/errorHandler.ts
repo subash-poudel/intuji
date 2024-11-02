@@ -1,6 +1,7 @@
 import HttpStatus from "http-status-codes";
 
 function buildError(err: any) {
+  console.error(err);
   if (err.isJoi) {
     return {
       code: HttpStatus.BAD_REQUEST,
@@ -25,7 +26,8 @@ function buildError(err: any) {
 
   return {
     code: HttpStatus.INTERNAL_SERVER_ERROR,
-    message: HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR),
+    message:
+      err.message ?? HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR),
   };
 }
 

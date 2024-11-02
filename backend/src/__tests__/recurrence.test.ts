@@ -2,7 +2,11 @@ import {
   checkIfthereIsOverlapForDates,
   checkIfThereIsOverlapForRecurrenceRules,
 } from "../helpers/dateHelper";
-import { EventRequestModel, RecurrenceType } from "../models/eventModels";
+import {
+  EventRequestModel,
+  RecurrenceType,
+  RsvpStatus,
+} from "../models/eventModels";
 
 describe("Recurrence test", () => {
   it("Test that two dates overlap", () => {
@@ -52,6 +56,13 @@ describe("Recurrence test", () => {
       recurrence: {
         freq: RecurrenceType.DAILY,
       },
+      participants: [
+        {
+          email: "a@a.com",
+          name: "aaaaaaaaa",
+          rsvp_status: RsvpStatus.pending,
+        },
+      ],
     };
     // 15 mins overlap
     const event2: EventRequestModel = {
@@ -66,6 +77,13 @@ describe("Recurrence test", () => {
       recurrence: {
         freq: RecurrenceType.DAILY,
       },
+      participants: [
+        {
+          email: "a@a.com",
+          name: "aaaaaaaaa",
+          rsvp_status: RsvpStatus.pending,
+        },
+      ],
     };
 
     const actual = checkIfThereIsOverlapForRecurrenceRules(event1, event2);
@@ -86,6 +104,13 @@ describe("Recurrence test", () => {
       recurrence: {
         freq: RecurrenceType.DAILY,
       },
+      participants: [
+        {
+          email: "a@a.com",
+          name: "aaaaaaaaa",
+          rsvp_status: RsvpStatus.pending,
+        },
+      ],
     };
     const event2: EventRequestModel = {
       description: "",
@@ -99,10 +124,43 @@ describe("Recurrence test", () => {
       recurrence: {
         freq: RecurrenceType.DAILY,
       },
+      participants: [
+        {
+          email: "a@a.com",
+          name: "aaaaaaaaa",
+          rsvp_status: RsvpStatus.pending,
+        },
+      ],
     };
 
     const actual = checkIfThereIsOverlapForRecurrenceRules(event1, event2);
     const expected = false;
+    expect(actual).toEqual(expected);
+  });
+
+  it("Test that copy of an event overlaps", () => {
+    const event1: EventRequestModel = {
+      title: "recurrence daily 1",
+      description: "Testing testing abc",
+      duration: 60,
+      start_time: "04:00",
+      start_date: "2024-01-01",
+      end_date: "2024-01-01",
+      time_zone: "America/New_York",
+      location: "Central Park, NY",
+      recurrence: { freq: "DAILY" },
+      participants: [
+        {
+          name: "aaaaaaaaaaa",
+          email: "a@a.com",
+          rsvp_status: RsvpStatus.pending,
+        },
+      ],
+    };
+    const event2: EventRequestModel = { ...event1 };
+
+    const actual = checkIfThereIsOverlapForRecurrenceRules(event1, event2);
+    const expected = true;
     expect(actual).toEqual(expected);
   });
 });
