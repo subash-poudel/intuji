@@ -14,5 +14,8 @@ export function createEvent(req: Request, res: Response, next: NextFunction) {
   eventService
     .createEvent(req.body)
     .then((data) => res.json({ data }))
-    .catch((err) => next(err));
+    .catch((err) => {
+      console.error(err);
+      next(err);
+    });
 }

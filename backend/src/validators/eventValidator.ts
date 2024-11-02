@@ -36,8 +36,19 @@ export const recurrenceSchema = Joi.object({
 export const eventSchema = Joi.object({
   title: Joi.string().min(5).max(150).required(),
   description: Joi.string().max(500).optional().allow(""),
-  start_time: Joi.string().isoDate().required(),
-  end_time: Joi.string().isoDate().required(),
+  duration: Joi.number()
+    .min(15)
+    .max(12 * 60)
+    .required(),
+  start_date: Joi.string()
+    .pattern(/^202[0-9]-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/)
+    .required(),
+  end_date: Joi.string()
+    .pattern(/^202[0-9]-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/)
+    .required(),
+  start_time: Joi.string()
+    .pattern(/^(?:[01]\d|2[0-3]):[0-5]\d$/)
+    .message("Time should be provided in 24 hour format like 13:00"),
   time_zone: Joi.string().required(),
   location: Joi.string().optional().allow(""),
   recurrence: recurrenceSchema.optional(),

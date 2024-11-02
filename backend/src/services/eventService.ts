@@ -8,15 +8,18 @@ export async function getAllEvents() {
 export async function createEvent(event: EventRequestModel) {
   return knex
     .raw(
-      `INSERT INTO events (title, description, start_time, end_time, time_zone, location, created_at, updated_at)
-     VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW()) RETURNING *`,
+      `INSERT INTO events (title, description, duration, start_time, start_date, end_date, time_zone, location, recurrence, created_at, updated_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW()) RETURNING *`,
       [
         event.title,
         event.description,
+        event.duration,
         event.start_time,
-        event.end_time,
+        event.start_date,
+        event.end_date,
         event.time_zone,
         event.location,
+        event.recurrence ? JSON.stringify(event.recurrence) : null,
       ]
     )
     .then((result) => {
