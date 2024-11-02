@@ -1,13 +1,14 @@
 import Joi from "joi";
 import { Request, Response, NextFunction } from "express";
 import validate from "../helpers/validator";
-import { Day, RecurrenceType } from "../models/eventModels";
+import { Day, RecurrenceType, RsvpStatus } from "../models/eventModels";
 
 export const recurrenceSchema = Joi.object({
   freq: Joi.string()
     .valid(RecurrenceType.DAILY, RecurrenceType.WEEKLY, RecurrenceType.MONTHLY)
     .required(),
   bymonthday: Joi.array()
+    .min(1)
     .items(Joi.number().integer().min(1).max(31))
     .when("freq", {
       is: RecurrenceType.MONTHLY,
@@ -15,6 +16,7 @@ export const recurrenceSchema = Joi.object({
       otherwise: Joi.forbidden(),
     }),
   byweekday: Joi.array()
+    .min(1)
     .items(
       Joi.string().valid(
         Day.Monday,
@@ -31,6 +33,14 @@ export const recurrenceSchema = Joi.object({
       then: Joi.required(),
       otherwise: Joi.forbidden(),
     }),
+});
+
+export const participantsSchema = Joi.object({
+  name: Joi.string().min(2).max(150).required(),
+  email: Joi.string().email().min(2).max(150).required(),
+  rsvp_status: Joi.string()
+    .valid(RsvpStatus.accepted, RsvpStatus.declined, RsvpStatus.pending)
+    .required(),
 });
 
 export const eventSchema = Joi.object({
@@ -52,6 +62,7 @@ export const eventSchema = Joi.object({
   time_zone: Joi.string().required(),
   location: Joi.string().optional().allow(""),
   recurrence: recurrenceSchema.optional(),
+  participants: Joi.array().min(1).items(participantsSchema).required(),
 });
 
 export function eventValidator(

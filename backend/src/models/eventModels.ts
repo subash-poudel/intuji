@@ -31,3 +31,9 @@ export enum Day {
   "Saturday" = "Saturday",
   "Sunday" = "Sunday",
 }
+
+export enum RsvpStatus {
+  "accepted" = "accepted",
+  "declined" = "declined",
+  "pending" = "pending",
+}
