@@ -164,7 +164,6 @@ export function checkIfThereIsOverlapForRecurrenceRules(
     rrule1.options.until ?? new Date(),
     true
   );
-  // console.log({ allRecurrenceForRule1, allRecurenceDatesForRule2 });
   for (const date1Start of allRecurrenceForRule1) {
     const date1End = addMinutes(date1Start, model1.duration);
     for (const date2Start of allRecurenceDatesForRule2) {
