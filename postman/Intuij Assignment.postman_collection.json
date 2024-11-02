@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "7ba02482-a981-4125-a47c-9e38a215ae10",
+		"name": "Intuij Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2917307"
+	},
+	"item": [
+		{
+			"name": "Check if server is running",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Run First",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"First Event\",\n    \"description\": \"Testing testing abc\",\n    \"duration\": 60,\n    \"start_time\": \"04:15\",\n    \"start_date\": \"2024-01-01\",\n    \"end_date\": \"2024-01-01\",\n    \"time_zone\": \"America/New_York\",\n    \"location\": \"Central Park, NY\",\n    \"recurrence\": {\n        \"freq\": \"DAILY\"\n    },\n    \"participants\": [\n        {\n            \"name\": \"aaaaaaaaaaa\",\n            \"email\": \"a@a.com\",\n            \"rsvp_status\": \"pending\"\n        },\n        {\n            \"name\": \"bbbbbbbb\",\n            \"email\": \"b@b.com\",\n            \"rsvp_status\": \"pending\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Run Second",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Second Event\",\n    \"description\": \"Testing testing abc\",\n    \"duration\": 60,\n    \"start_time\": \"04:15\",\n    \"start_date\": \"2024-02-01\",\n    \"end_date\": \"2024-03-01\",\n    \"time_zone\": \"America/New_York\",\n    \"location\": \"Central Park, NY\",\n    \"recurrence\": {\n        \"freq\": \"DAILY\"\n    },\n    \"participants\": [\n        {\n            \"name\": \"aaaaaaaaaaa\",\n            \"email\": \"a@a.com\",\n            \"rsvp_status\": \"pending\"\n        },\n        {\n            \"name\": \"bbbbbbbb\",\n            \"email\": \"b@b.com\",\n            \"rsvp_status\": \"pending\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conflict with first",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"First conflict 45 mins overlap\",\n    \"description\": \"Testing testing abc\",\n    \"duration\": 60,\n    \"start_time\": \"04:00\",\n    \"start_date\": \"2024-02-01\",\n    \"end_date\": \"2024-03-01\",\n    \"time_zone\": \"America/New_York\",\n    \"location\": \"Central Park, NY\",\n    \"recurrence\": {\n        \"freq\": \"DAILY\"\n    },\n    \"participants\": [\n        {\n            \"name\": \"aaaaaaaaaaa\",\n            \"email\": \"a@a.com\",\n            \"rsvp_status\": \"pending\"\n        },\n        {\n            \"name\": \"bbbbbbbb\",\n            \"email\": \"b@b.com\",\n            \"rsvp_status\": \"pending\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conflict with second",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"First conflict 45 mins overlap\",\n    \"description\": \"Testing testing abc\",\n    \"duration\": 60,\n    \"start_time\": \"04:00\",\n    \"start_date\": \"2024-02-05\",\n    \"end_date\": \"2024-02-05\",\n    \"time_zone\": \"America/New_York\",\n    \"location\": \"Central Park, NY\",\n    \"recurrence\": {\n        \"freq\": \"DAILY\"\n    },\n    \"participants\": [\n        {\n            \"name\": \"aaaaaaaaaaa\",\n            \"email\": \"a@a.com\",\n            \"rsvp_status\": \"pending\"\n        },\n        {\n            \"name\": \"bbbbbbbb\",\n            \"email\": \"b@b.com\",\n            \"rsvp_status\": \"pending\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error End Date Before Start Date",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"recurrence daily 1\",\n    \"description\": \"Testing testing abc\",\n    \"duration\": 60,\n    \"start_time\": \"04:00\",\n    \"start_date\": \"2024-11-05\",\n    \"end_date\": \"2024-10-05\",\n    \"time_zone\": \"America/New_York\",\n    \"location\": \"Central Park, NY\",\n    \"recurrence\": {\n        \"freq\": \"MONTHLY\",\n        \"bymonthday\": [\n            1,\n            5\n        ]\n    },\n    \"participants\": [\n        {\n            \"name\": \"participant a\",\n            \"email\": \"a@b.com\",\n            \"rsvp_status\": \"pending\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error Array Type",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"recurrence daily 1\",\n    \"description\": \"Testing testing abc\",\n    \"duration\": 60,\n    \"start_time\": \"04:00\",\n    \"start_date\": \"2024-11-05\",\n    \"end_date\": \"2024-10-05\",\n    \"time_zone\": \"America/New_York\",\n    \"location\": \"Central Park, NY\",\n    \"recurrence\": {\n        \"freq\": \"MONTHLY\"\n    },\n    \"participants\": [\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"events"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
